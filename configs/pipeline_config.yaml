@@ -1,0 +1,40 @@
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  labeled_dir: data/labeled
+  output_dir: outputs
+
+data_sources:
+  synthetic: data/raw/synthetic_generated.csv
+
+cleaning:
+  min_length: 20
+  max_length: 300
+  target_language: id
+  remove_duplicates: true
+  normalize_text: true
+
+labeling:
+  intent_labels:
+    - complaint
+    - inquiry
+    - urgent_request
+    - feedback
+  sentiment_labels:
+    - positive
+    - neutral
+    - negative
+    - very_negative
+  urgency_labels:
+    - low
+    - medium
+    - high
+    - critical
+  safety_labels:
+    - safe
+    - toxic
+    - offensive
+
+quality:
+  min_kappa: 0.7
+  sample_size_iaa: 50

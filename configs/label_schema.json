@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "labels": {
+    "intent": {
+      "type": "single_choice",
+      "options": ["complaint", "inquiry", "urgent_request", "feedback"],
+      "required": true
+    },
+    "sentiment": {
+      "type": "single_choice",
+      "options": ["positive", "neutral", "negative", "very_negative"],
+      "required": true
+    },
+    "urgency": {
+      "type": "single_choice",
+      "options": ["low", "medium", "high", "critical"],
+      "required": true
+    },
+    "safety": {
+      "type": "single_choice",
+      "options": ["safe", "toxic", "offensive"],
+      "required": true
+    }
+  },
+  "metadata": {
+    "created": "2024-12-16",
+    "description": "Label schema for Indonesian fintech customer messages"
+  }
+}

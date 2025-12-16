@@ -1,0 +1,34 @@
+```
+
+### 2. `.gitignore`
+```
+# Environment
+.env
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Data
+data/raw/*.csv
+data/raw/*.jsonl
+data/processed/*.jsonl
+data/labeled/*.jsonl
+
+# Outputs
+outputs/*.pdf
+outputs/*.html
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

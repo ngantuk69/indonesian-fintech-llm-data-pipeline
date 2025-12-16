@@ -1,0 +1,57 @@
+indonesian-fintech-llm-data-pipeline/
+│
+├── data/
+│   ├── raw/
+│   │   ├── gopay_customer_messages.csv
+│   │   
+│   │   
+│   │
+│   ├── processed/
+│   │   ├── cleaned_data.jsonl
+│   │   ├── validation_report.json
+│   │   └── cleaning_log.csv
+│   │
+│   └── labeled/
+│       ├── labeled_data.jsonl
+│       ├── ambiguous_cases.csv
+│       └── label_distribution.json
+│
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_cleaning_pipeline.ipynb
+│   ├── 03_labeling_analysis.ipynb
+│   └── 04_quality_metrics.ipynb
+│
+├── scripts/
+│   ├── __init__.py
+│   ├── preprocess.py
+│   ├── validate.py
+│   ├── label_utils.py
+│   └── run_pipeline.py
+│
+├── tests/
+│   ├── test_preprocess.py
+│   ├── test_validate.py
+│   └── test_label_utils.py
+│
+├── configs/
+│   ├── pipeline_config.yaml
+│   └── label_schema.json
+│
+├── docs/
+│   ├── labeling_guideline.md
+│   ├── guideline_v1_to_v2_changelog.md
+│   └── edge_cases_documentation.md
+│
+├── outputs/
+│   ├── quality_report.pdf
+│   ├── metrics_dashboard.html
+│   └── visualizations/
+│       ├── label_distribution.png
+│       ├── cleaning_stats.png
+│       └── quality_scores.png
+│
+├── .gitignore
+├── requirements.txt
+├── README.md
+└── REPORT.md
