@@ -2,7 +2,7 @@ indonesian-fintech-llm-data-pipeline/
 │
 ├── data/
 │   ├── raw/
-│   │   ├── gopay_customer_messages.csv
+│   │   ├── synthetic_generated.csv
 │   │   
 │   │   
 │   │
