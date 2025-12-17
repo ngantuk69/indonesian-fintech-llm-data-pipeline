@@ -9,11 +9,7 @@ env/
 *.pyc
 __pycache__/
 
-# Data
-data/raw/*.csv
-data/raw/*.jsonl
-data/processed/*.jsonl
-data/labeled/*.jsonl
+
 
 # Outputs
 outputs/*.pdf
