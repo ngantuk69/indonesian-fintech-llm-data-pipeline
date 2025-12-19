@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-12-18T14:38:57.470968",
+  "row_count": 102,
+  "checks": {
+    "schema": {
+      "required_columns": [
+        "id",
+        "text",
+        "text_length",
+        "detected_lang"
+      ],
+      "missing": [],
+      "status": "PASS"
+    },
+    "nulls": {
+      "null_counts": {
+        "id": 0,
+        "text": 0
+      },
+      "status": "PASS"
+    },
+    "length": {
+      "min": 20,
+      "max": 300,
+      "violations": {
+        "too_short": 0,
+        "too_long": 0
+      },
+      "status": "PASS"
+    },
+    "language": {
+      "target": "id",
+      "non_target_count": 0,
+      "status": "PASS"
+    }
+  },
+  "status": "PASS"
+}
