@@ -1,0 +1,60 @@
+{
+  "length_outliers": [],
+  "label_inconsistencies": [
+    {
+      "id": "msg_460",
+      "text": "thanks min udh dibantu refund nya masuk...",
+      "reason": "positive_complaint",
+      "labels": {
+        "intent": "complaint",
+        "sentiment": "positive"
+      }
+    },
+    {
+      "id": "msg_489",
+      "text": "thanks min udh dibantu refund nya masuk...",
+      "reason": "positive_complaint",
+      "labels": {
+        "intent": "complaint",
+        "sentiment": "positive"
+      }
+    },
+    {
+      "id": "msg_491",
+      "text": "thanks min udh dibantu refund nya masuk???...",
+      "reason": "positive_complaint",
+      "labels": {
+        "intent": "complaint",
+        "sentiment": "positive"
+      }
+    },
+    {
+      "id": "msg_110",
+      "text": "transaksi pending terus uang nyangkut bangsat........",
+      "reason": "toxic_low_urgency",
+      "labels": {
+        "safety": "toxic",
+        "urgency": "low"
+      }
+    },
+    {
+      "id": "msg_068",
+      "text": "saldo tiba2 berkurang sendiri aplikasi sampah...",
+      "reason": "toxic_low_urgency",
+      "labels": {
+        "safety": "offensive",
+        "urgency": "low"
+      }
+    },
+    {
+      "id": "msg_120",
+      "text": "saldo tiba2 berkurang sendiri aplikasi sampah???...",
+      "reason": "toxic_low_urgency",
+      "labels": {
+        "safety": "offensive",
+        "urgency": "low"
+      }
+    }
+  ],
+  "statistical_anomalies": []
+}

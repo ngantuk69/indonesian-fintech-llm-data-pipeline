@@ -1,0 +1,29 @@
+{
+  "total_messages": 132,
+  "timestamp": "2025-12-19T10:51:01.068544",
+  "distributions": {
+    "intent": {
+      "inquiry": 47,
+      "complaint": 39,
+      "urgent_request": 30,
+      "feedback": 16
+    },
+    "sentiment": {
+      "neutral": 71,
+      "very_negative": 36,
+      "negative": 18,
+      "positive": 7
+    },
+    "urgency": {
+      "low": 63,
+      "medium": 27,
+      "high": 27,
+      "critical": 15
+    },
+    "safety": {
+      "safe": 91,
+      "toxic": 31,
+      "offensive": 10
+    }
+  }
+}

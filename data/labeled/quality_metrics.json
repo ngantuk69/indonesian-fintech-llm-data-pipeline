@@ -1,0 +1,135 @@
+{
+  "timestamp": "2025-12-19T15:23:34.274874",
+  "dataset_info": {
+    "total_messages": 132,
+    "label_types": [
+      "intent",
+      "sentiment",
+      "urgency",
+      "safety"
+    ]
+  },
+  "kappa_scores": {
+    "intent": 0.9371,
+    "sentiment": 0.9267,
+    "urgency": 0.9331,
+    "safety": 0.9053
+  },
+  "average_kappa": 0.9256,
+  "distributions": {
+    "intent": {
+      "counts": {
+        "inquiry": 47,
+        "complaint": 39,
+        "urgent_request": 30,
+        "feedback": 16
+      },
+      "percentages": {
+        "inquiry": 35.61,
+        "complaint": 29.55,
+        "urgent_request": 22.73,
+        "feedback": 12.12
+      },
+      "n_classes": 4,
+      "majority_class": "inquiry",
+      "majority_pct": 35.61,
+      "minority_class": "feedback",
+      "minority_pct": 12.12
+    },
+    "sentiment": {
+      "counts": {
+        "neutral": 71,
+        "very_negative": 36,
+        "negative": 18,
+        "positive": 7
+      },
+      "percentages": {
+        "neutral": 53.79,
+        "very_negative": 27.27,
+        "negative": 13.64,
+        "positive": 5.3
+      },
+      "n_classes": 4,
+      "majority_class": "neutral",
+      "majority_pct": 53.79,
+      "minority_class": "positive",
+      "minority_pct": 5.3
+    },
+    "urgency": {
+      "counts": {
+        "low": 63,
+        "medium": 27,
+        "high": 27,
+        "critical": 15
+      },
+      "percentages": {
+        "low": 47.73,
+        "medium": 20.45,
+        "high": 20.45,
+        "critical": 11.36
+      },
+      "n_classes": 4,
+      "majority_class": "low",
+      "majority_pct": 47.73,
+      "minority_class": "critical",
+      "minority_pct": 11.36
+    },
+    "safety": {
+      "counts": {
+        "safe": 91,
+        "toxic": 31,
+        "offensive": 10
+      },
+      "percentages": {
+        "safe": 68.94,
+        "toxic": 23.48,
+        "offensive": 7.58
+      },
+      "n_classes": 3,
+      "majority_class": "safe",
+      "majority_pct": 68.94,
+      "minority_class": "offensive",
+      "minority_pct": 7.58
+    }
+  },
+  "correlations": {
+    "intent": {
+      "intent": 1.0,
+      "sentiment": -0.6343439845838276,
+      "urgency": -0.676264600276363,
+      "safety": -0.3716093833255377
+    },
+    "sentiment": {
+      "intent": -0.6343439845838276,
+      "sentiment": 1.0,
+      "urgency": 0.4465872762948369,
+      "safety": 0.6494815282109975
+    },
+    "urgency": {
+      "intent": -0.676264600276363,
+      "sentiment": 0.4465872762948369,
+      "urgency": 1.0,
+      "safety": 0.2954825885049787
+    },
+    "safety": {
+      "intent": -0.3716093833255377,
+      "sentiment": 0.6494815282109975,
+      "urgency": 0.2954825885049787,
+      "safety": 1.0
+    }
+  },
+  "outliers": {
+    "total_count": 6,
+    "breakdown": {
+      "length_outliers": 0,
+      "label_inconsistencies": 6,
+      "statistical_anomalies": 0
+    }
+  },
+  "imbalance_warnings": [
+    "sentiment: 10.1x imbalance",
+    "urgency: 4.2x imbalance",
+    "safety: 9.1x imbalance"
+  ],
+  "quality_status": "PASS"
+}

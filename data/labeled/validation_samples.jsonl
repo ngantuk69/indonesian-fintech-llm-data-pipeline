@@ -1,0 +1,6 @@
+{"id": "msg_460", "text": "thanks min udh dibantu refund nya masuk", "labels": {"intent": "complaint", "sentiment": "positive", "urgency": "low", "safety": "safe"}, "issue": "positive_complaint"}
+{"id": "msg_489", "text": "thanks min udh dibantu refund nya masuk", "labels": {"intent": "complaint", "sentiment": "positive", "urgency": "low", "safety": "safe"}, "issue": "positive_complaint"}
+{"id": "msg_491", "text": "thanks min udh dibantu refund nya masuk???", "labels": {"intent": "complaint", "sentiment": "positive", "urgency": "low", "safety": "safe"}, "issue": "positive_complaint"}
+{"id": "msg_110", "text": "transaksi pending terus uang nyangkut bangsat.....", "labels": {"intent": "urgent_request", "sentiment": "very_negative", "urgency": "low", "safety": "toxic"}, "issue": "toxic_low_urgency"}
+{"id": "msg_068", "text": "saldo tiba2 berkurang sendiri aplikasi sampah", "labels": {"intent": "inquiry", "sentiment": "negative", "urgency": "low", "safety": "offensive"}, "issue": "toxic_low_urgency"}
+{"id": "msg_120", "text": "saldo tiba2 berkurang sendiri aplikasi sampah???", "labels": {"intent": "inquiry", "sentiment": "negative", "urgency": "low", "safety": "offensive"}, "issue": "toxic_low_urgency"}

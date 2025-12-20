@@ -1,0 +1,76 @@
+{
+  "intent": {
+    "counts": {
+      "inquiry": 47,
+      "complaint": 39,
+      "urgent_request": 30,
+      "feedback": 16
+    },
+    "percentages": {
+      "inquiry": 35.61,
+      "complaint": 29.55,
+      "urgent_request": 22.73,
+      "feedback": 12.12
+    },
+    "n_classes": 4,
+    "majority_class": "inquiry",
+    "majority_pct": 35.61,
+    "minority_class": "feedback",
+    "minority_pct": 12.12
+  },
+  "sentiment": {
+    "counts": {
+      "neutral": 71,
+      "very_negative": 36,
+      "negative": 18,
+      "positive": 7
+    },
+    "percentages": {
+      "neutral": 53.79,
+      "very_negative": 27.27,
+      "negative": 13.64,
+      "positive": 5.3
+    },
+    "n_classes": 4,
+    "majority_class": "neutral",
+    "majority_pct": 53.79,
+    "minority_class": "positive",
+    "minority_pct": 5.3
+  },
+  "urgency": {
+    "counts": {
+      "low": 63,
+      "medium": 27,
+      "high": 27,
+      "critical": 15
+    },
+    "percentages": {
+      "low": 47.73,
+      "medium": 20.45,
+      "high": 20.45,
+      "critical": 11.36
+    },
+    "n_classes": 4,
+    "majority_class": "low",
+    "majority_pct": 47.73,
+    "minority_class": "critical",
+    "minority_pct": 11.36
+  },
+  "safety": {
+    "counts": {
+      "safe": 91,
+      "toxic": 31,
+      "offensive": 10
+    },
+    "percentages": {
+      "safe": 68.94,
+      "toxic": 23.48,
+      "offensive": 7.58
+    },
+    "n_classes": 3,
+    "majority_class": "safe",
+    "majority_pct": 68.94,
+    "minority_class": "offensive",
+    "minority_pct": 7.58
+  }
+}
