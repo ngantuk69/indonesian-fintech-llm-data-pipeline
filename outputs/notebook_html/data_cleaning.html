@@ -7694,6 +7694,22 @@ Sample:
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>MD5 hashing vs string comparison</strong>:</p>
+<ul>
+<li><strong>Why not simple <code>==</code>?</strong> String comparison is O(n²) for all pairs</li>
+<li><strong>Why MD5?</strong> O(n) hashing creates unique fingerprints, enabling efficient duplicate detection via hash table lookups</li>
+<li><strong>Trade-off</strong>: Negligible collision risk for short text</li>
+</ul>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7772,6 +7788,35 @@ Duplicate examples:
 <li>Normalize multiple spaces</li>
 <li>Normalize excessive punctuation</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol>
+<li><p><strong>Whitespace</strong>: <code>strip()</code> + collapse multiple spaces</p>
+<ul>
+<li><strong>Why?</strong> Prevents "hello  world" ≠ "hello  world" false uniqueness</li>
+</ul>
+</li>
+<li><p><strong>Punctuation</strong>: Limit excessive repetition (!!!! → !!!)</p>
+<ul>
+<li><strong>Why not remove entirely?</strong> Emotional indicators are valuable for urgency/sentiment</li>
+<li><strong>Why limit to 5/3?</strong> Balance between preserving emotion vs token explosion</li>
+</ul>
+</li>
+<li><p><strong>ASCII-only (emoji removal)</strong>: Strip non-ASCII characters</p>
+<ul>
+<li><strong>Why?</strong> Emojis cause encoding issues; models often struggle with Unicode</li>
+<li><strong>Trade-off</strong>: Lose emoji sentiment signals (e.g., 😡💔)</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -7861,6 +7906,22 @@ Examples AFTER normalization:
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Hard thresholds (20-300 chars)</strong>:</p>
+<ul>
+<li><strong>Why 20 minimum?</strong> Too short = insufficient context for intent/sentiment</li>
+<li><strong>Why 300 maximum?</strong> Customer messages are brief; outliers are likely errors</li>
+<li><strong>From exploration</strong>: 98.2% already within range, so minimal loss expected</li>
+</ul>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7938,6 +7999,35 @@ Too short examples:
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="7.-Step-4:-Filter-by-Language">7. Step 4: Filter by Language<a class="anchor-link" href="#7.-Step-4:-Filter-by-Language">¶</a></h2><p>Keep only Indonesian messages</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Solution - 3-tier approach</strong>:</p>
+<ol>
+<li><p><strong>Tier 1</strong>: Check for 2+ Indonesian keywords → immediate <code>id</code> classification</p>
+<ul>
+<li><strong>Why 2+ threshold?</strong> Single keyword might be coincidence (e.g., "min" in English)</li>
+</ul>
+</li>
+<li><p><strong>Tier 2</strong>: Fallback to <code>langdetect</code> library</p>
+<ul>
+<li>Treat Malay (<code>ms</code>) and Tagalog (<code>tl</code>) as Indonesian (linguistically similar)</li>
+</ul>
+</li>
+<li><p><strong>Tier 3</strong>: If detection fails but 1+ keyword found → assume <code>id</code></p>
+<ul>
+<li>Safety net for edge cases</li>
+</ul>
+</li>
+</ol>
+<p><strong>Why this matters</strong>: Without keyword fallback, we'd lose ~20 messages</p>
 </div>
 </div>
 </div>
@@ -8042,6 +8132,17 @@ Non-Indonesian messages (20):
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="8.-Validation">8. Validation<a class="anchor-link" href="#8.-Validation">¶</a></h2><p>Verify cleaned data meets all requirements</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Automated validation suite</strong>: Ensures cleaned data meets all requirements before downstream processing (labeling).</p>
 </div>
 </div>
 </div>
@@ -8288,6 +8389,43 @@ Total removed: 423 (76.2%)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol>
+<li><p><strong>Deduplication dominates</strong> (93.4% of all removals)</p>
+<ul>
+<li>Synthetic data generation issue OR legitimate customer repetition</li>
+</ul>
+</li>
+<li><p><strong>Length filter minimal</strong> (1.9%)</p>
+<ul>
+<li>Constraints are well-calibrated</li>
+</ul>
+</li>
+<li><p><strong>Language filter moderate</strong> (4.7%)</p>
+<ul>
+<li>Keyword fallback saved ~20 messages from false negatives</li>
+</ul>
+</li>
+<li><p><strong>Normalization invisible</strong> (0 removed)</p>
+<ul>
+<li>Transforms data without filtering</li>
+</ul>
+</li>
+</ol>
+<p><strong>Final retention</strong>: <strong>23.8%</strong> (132/555)</p>
+<ul>
+<li>Aggressive but justified: 71.2% were exact duplicates</li>
+<li>True unique content: 160 messages → 132 after quality filters</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="11.-Visualization:-Cleaning-Funnel">11. Visualization: Cleaning Funnel<a class="anchor-link" href="#11.-Visualization:-Cleaning-Funnel">¶</a></h2>
 </div>
 </div>
@@ -8356,6 +8494,32 @@ Total removed: 423 (76.2%)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Left Chart - Funnel</strong>:</p>
+<ul>
+<li><strong>Massive drop</strong> from Raw (555) to Deduplication (160) - <strong>71.2% reduction</strong></li>
+<li>Color gradient (red→yellow→green) shows data quality improving</li>
+<li><strong>Flat sections</strong> (normalization) = transformation without loss</li>
+<li><strong>Final bar (132)</strong> smallest but greenest = highest quality</li>
+</ul>
+<p><strong>Right Chart - Removal Breakdown (Pie)</strong>:</p>
+<ul>
+<li><strong>93.4% deduplication</strong> dominates the pie (blue)</li>
+<li><strong>4.7% language filter</strong> (green) - small but necessary</li>
+<li><strong>1.9% length filter</strong> (orange) - barely visible</li>
+<li><strong>0% normalization</strong> - not shown (no removals)</li>
+</ul>
+<p><strong>Visual insight</strong>: Deduplication is the ONLY significant data reduction stage. Other filters are precision tuning.</p>
+<p><strong>Pipeline recommendation</strong>: If retention rate needs to increase, ONLY option is relaxing language detection (e.g., keep English messages). Length/dedup constraints are non-negotiable.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="12.-Text-Length-Distribution-(Cleaned)">12. Text Length Distribution (Cleaned)<a class="anchor-link" href="#12.-Text-Length-Distribution-(Cleaned)">¶</a></h2>
 </div>
 </div>
@@ -8411,6 +8575,53 @@ Total removed: 423 (76.2%)
 Median text length: 39 characters
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li><strong>Mean: 39.3 chars</strong> (blue line) = median: 39 (perfect symmetry)</li>
+<li><strong>Tight clustering</strong> around 35-50 chars (same as raw data)</li>
+<li><strong>No outliers</strong> - all messages cleanly within 20-300 bounds</li>
+</ul>
+<p><strong>Key observations</strong>:</p>
+<ol>
+<li><p><strong>Distribution unchanged</strong> from raw data exploration</p>
+<ul>
+<li>Deduplication removed exact copies, not outliers</li>
+<li>Length filter removed only 8 edge cases</li>
+</ul>
+</li>
+<li><p><strong>Min threshold (20) well-positioned</strong></p>
+<ul>
+<li>Captures only 1 message near boundary</li>
+<li>No data loss risk</li>
+</ul>
+</li>
+<li><p><strong>Max threshold (300) irrelevant</strong></p>
+<ul>
+<li>Could safely lower to 100 chars without any loss</li>
+<li>Current setting is conservative</li>
+</ul>
+</li>
+<li><p><strong>Color = green</strong> (vs blue in exploration)</p>
+<ul>
+<li>Visual indicator of "cleaned" status</li>
+</ul>
+</li>
+</ol>
+<p><strong>Statistical validation</strong>:</p>
+<ul>
+<li>Mean unchanged: 39.3 chars (was 39.28 in raw)</li>
+<li><strong>Conclusion</strong>: Cleaning preserved message length characteristics while removing duplicates and quality issues</li>
+</ul>
+<p><strong>No distribution shift = quality filters worked as intended</strong> (removed noise, not signal)</p>
 </div>
 </div>
 </div>
@@ -8563,6 +8774,45 @@ Next step: Day 3 - Manual labeling (intent, sentiment, urgency, safety)
 ============================================================
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Key-Takeaways">Key Takeaways<a class="anchor-link" href="#Key-Takeaways">¶</a></h2><h3 id="Pipeline-Efficiency">Pipeline Efficiency<a class="anchor-link" href="#Pipeline-Efficiency">¶</a></h3><p><strong>76.2% data removal</strong> (555 → 132) breaks down as:</p>
+<ol>
+<li><strong>Deduplication: 93.4%</strong> of removals (395 messages)</li>
+<li><strong>Language filter: 4.7%</strong> of removals (20 messages)</li>
+<li><strong>Length filter: 1.9%</strong> of removals (8 messages)</li>
+<li><strong>Normalization: 0%</strong> removals (transform-only)</li>
+</ol>
+<h3 id="Critical-Decisions-Validated">Critical Decisions Validated<a class="anchor-link" href="#Critical-Decisions-Validated">¶</a></h3><p><strong>MD5 hashing</strong> - Efficient duplicate detection at scale<br/>
+<strong>Keyword fallback</strong> - Recovered ~20 misclassified Indonesian messages<br/>
+<strong>Length constraints</strong> - Well-calibrated (98.2% pass rate in raw data)<br/>
+<strong>Punctuation preservation</strong> - Keeps emotional signals for urgency labeling</p>
+<h3 id="Unexpected-Findings">Unexpected Findings<a class="anchor-link" href="#Unexpected-Findings">¶</a></h3><p><strong>84.5% duplication rate</strong> - Much higher than typical real-world data<br/>
+<strong>Language detection failures</strong> - Keywords "goblok", "aplikasi", "bangsatt" missing<br/>
+<strong>Max length constraint irrelevant</strong> - Could lower from 300 to 100 without loss</p>
+<h3 id="Quality-Assurance">Quality Assurance<a class="anchor-link" href="#Quality-Assurance">¶</a></h3><p><strong>All validation checks pass</strong> - No nulls, correct schema, valid lengths, Indonesian-only<br/>
+<strong>Distribution preserved</strong> - Mean/median unchanged (39 chars)<br/>
+<strong>Content diversity maintained</strong> - Random sampling shows varied message types</p>
+<h3 id="Next-Steps-for-Guidelines.md">Next Steps for Guidelines.md<a class="anchor-link" href="#Next-Steps-for-Guidelines.md">¶</a></h3><ol>
+<li><strong>Add missing keywords</strong> to Indonesian detection: goblok, aplikasi, bangsatt, makin</li>
+<li><strong>Document edge case</strong>: Toxic ALL CAPS messages may still be misclassified</li>
+<li><strong>Consider lowering</strong> max_length to 100 chars (data-driven recommendation)</li>
+<li><strong>Explain 23.8% retention rate</strong> to stakeholders (justified by 71% duplicates)</li>
+</ol>
+<h3 id="Pipeline-Robustness">Pipeline Robustness<a class="anchor-link" href="#Pipeline-Robustness">¶</a></h3><ul>
+<li><strong>Reproducible</strong>: All parameters in config YAML</li>
+<li><strong>Traceable</strong>: Timestamps + cleaning_log.csv</li>
+<li><strong>Validated</strong>: Automated checks prevent bad data propagation</li>
+<li><strong>Transparent</strong>: Funnel visualization for non-technical stakeholders</li>
+</ul>
 </div>
 </div>
 </div>

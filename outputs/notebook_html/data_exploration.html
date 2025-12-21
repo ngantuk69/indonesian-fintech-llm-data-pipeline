@@ -7504,6 +7504,25 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Notebook Scope</p>
+<p>This notebook performs <strong>exploratory data analysis (EDA)</strong> only.</p>
+<ul>
+<li>No rows are removed</li>
+<li>No text is modified</li>
+<li>No filtering decisions are executed</li>
+</ul>
+<p>All transformations and cleaning decisions are implemented
+in <code>data_cleaning.ipynb</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="1.-Environment-Setup">1. Environment Setup<a class="anchor-link" href="#1.-Environment-Setup">¶</a></h2>
 </div>
 </div>
@@ -7561,7 +7580,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Load-Configuration">2. Load Configuration<a class="anchor-link" href="#2.-Load-Configuration">¶</a></h2>
+<h2 id="2.-Load-Configuration">2. Load Configuration<a class="anchor-link" href="#2.-Load-Configuration">¶</a></h2><p><strong>YAML Parsing</strong>: Loads pipeline parameters from <code>pipeline_config.yaml</code> for centralized configuration management.</p>
 </div>
 </div>
 </div>
@@ -7831,6 +7850,20 @@ Duplicate examples:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⚠️ Interpretation<br/>
+High duplication rate is expected due to synthetic data generated with MOSTLY.ai .
+Many messages share the same semantic meaning with minor lexical variations.
+Exact and semantic deduplication strategies will be applied in the cleaning pipeline.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="6.-Text-Length-Analysis">6. Text Length Analysis<a class="anchor-link" href="#6.-Text-Length-Analysis">¶</a></h2>
 </div>
 </div>
@@ -8034,17 +8067,11 @@ Excessive Punctuation:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Install langdetect if needed</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">langdetect</span> <span class="kn">import</span> <span class="n">detect</span><span class="p">,</span> <span class="n">LangDetectException</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Installing langdetect..."</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">subprocess</span>
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s2">"pip"</span><span class="p">,</span> <span class="s2">"install"</span><span class="p">,</span> <span class="s2">"langdetect"</span><span class="p">])</span>
-    <span class="kn">from</span> <span class="nn">langdetect</span> <span class="kn">import</span> <span class="n">detect</span><span class="p">,</span> <span class="n">LangDetectException</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">langdetect</span> <span class="kn">import</span> <span class="n">detect</span><span class="p">,</span> <span class="n">LangDetectException</span>
+
 
 <span class="c1"># Detect language</span>
 <span class="k">def</span> <span class="nf">detect_lang</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
@@ -8063,7 +8090,8 @@ Excessive Punctuation:
 <span class="n">lang_dist</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'detected_lang'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Language Distribution:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lang_dist</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Indonesian messages: </span><span class="si">{</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'detected_lang'</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'detected_lang'</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+<span class="n">id_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'detected_lang'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Detected as Indonesian (heuristic): </span><span class="si">{</span><span class="n">id_count</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">id_count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8079,24 +8107,37 @@ Excessive Punctuation:
 <pre>Language Distribution:
 detected_lang
 id         387
-de          80
-en          41
+de          79
+en          44
 fr          15
-ca          12
+ca          10
+et           4
 unknown      4
-et           3
 lt           3
 sl           3
-it           2
+fi           2
 pt           2
-da           1
+it           1
 es           1
-fi           1
 Name: count, dtype: int64
 
-Indonesian messages: 387 (69.7%)
+Detected as Indonesian (heuristic): 387 (69.7%)
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⚠️ Note on Language Detection<br/>
+Short, slang-heavy Indonesian customer messages are often misclassified by
+generic language detectors (e.g., detected as EN/FR/CA).
+Final language filtering or override decisions are deferred to the cleaning pipeline.</p>
 </div>
 </div>
 </div>
@@ -8679,6 +8720,75 @@ Whitespace Issues: 74
 Excessive Punctuation: 72
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Final Quality Assessment</strong>:</p>
+<p><strong>Data Volume</strong>:</p>
+<ul>
+<li>Total: 555 messages</li>
+<li>Unique: 160 (71.2% duplicates)</li>
+<li>Valid length: 545 (98.2%)</li>
+</ul>
+<p><strong>Language</strong>:</p>
+<ul>
+<li>Indonesian: 387 (69.7%)</li>
+<li>Non-Indonesian: 168 (30.3%) ← <strong>High false negative rate</strong></li>
+</ul>
+<p><strong>Content Quality</strong>:</p>
+<ul>
+<li>Toxic: 222 (40.0%) ← <strong>Very high toxicity</strong></li>
+<li>High urgency: 175 (31.5%)</li>
+<li>Whitespace issues: 74 (13.3%)</li>
+<li>Excessive punctuation: 72 (13.0%)</li>
+</ul>
+<p><strong>Pipeline Decisions</strong>:</p>
+<ol>
+<li>Deduplication CRITICAL (71.2% reduction expected)</li>
+<li>Language detection needs Indonesian keyword fallback</li>
+<li>Text normalization required (whitespace + punctuation)</li>
+<li>Length filter minimal impact (only 1.8% removal)</li>
+<li>High toxicity acceptable (reflects real customer frustration)</li>
+</ol>
+<p><strong>Expected Retention Rate</strong>: ~23-28% after all cleaning stages</p>
+<ul>
+<li>Start: 555 messages</li>
+<li>After dedup: ~160 messages</li>
+<li>After language filter: ~132 messages (if keyword fallback works)</li>
+<li>Final: ~130-140 messages</li>
+</ul>
+<hr/>
+<h2 id="Key-Takeaways">Key Takeaways<a class="anchor-link" href="#Key-Takeaways">¶</a></h2><h3 id="Critical-Findings">Critical Findings<a class="anchor-link" href="#Critical-Findings">¶</a></h3><ol>
+<li><strong>84.5% duplicates</strong> → Deduplication is highest priority</li>
+<li><strong>30.3% language misclassification</strong> → Need keyword-based fallback</li>
+<li><strong>40% toxic messages</strong> → Safety labeling is essential</li>
+<li><strong>24.3% multi-intent messages</strong> → Manual review required for single-label classification</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>note:</p>
+<ul>
+<li><p>Dataset contains high duplication due to synthetic generation using MOSTLY.ai</p>
+</li>
+<li><p>No cleaning or filtering is applied in this notebook</p>
+</li>
+</ul>
+<p>All corrective actions are implemented in <code>data_cleaning.ipynb</code>.</p>
 </div>
 </div>
 </div>
