@@ -135,10 +135,7 @@ graph TD
     I --> J[2 Annotators<br/>Manual Review]
     J --> K[Quality Validation<br/>Kappa: 0.93]
     K --> L[Final Dataset<br/>JSONL Export]
-    
-    style A fill:#ffcccc
-    style L fill:#ccffcc
-    style K fill:#ffffcc
+  
 ```
 
 ### Pipeline Stages
